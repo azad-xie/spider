@@ -12,22 +12,22 @@ public class App {
 	// alt+/
 	// 
 	public static void main(String[] args) {
-		//URL Ŀ��·��
+		//URL 目标路径
 		String url="https://movie.douban.com/top250";
-		//ʹ��
+		//使用Jsoup抓取数据
 		try {
 			Document doc=Jsoup.connect(url).get();
 			
 			Elements es=doc.select(".grid_view .item");
 			System.out.println(es.size());
-			//�����洢ӰƬ�б�
+			//创建存储影片列表
 			ArrayList<Film> list=new ArrayList<>();
 			
 			for(Element e:es) {
 				Film f = new Film();
-				//ÿһ��ӰƬ
+				//每一部影片
 				Element t=e.select(".title").first();
-				String num=e.select(".star span").last().text();//.substring(0,t.length()-3);.star�ǰѷ�Χ�ڵı�ǩȡ����
+				String num=e.select(".star span").last().text();//.substring(0,t.length()-3);.star是把范围内的标签取出来
 				System.out.println(t.text() + ","+num);
 				
 				//f.id
